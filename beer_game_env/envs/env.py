@@ -1,3 +1,4 @@
+import cloudpickle
 import gym
 from gym import error, spaces
 from gym.utils import seeding
@@ -101,6 +102,20 @@ class BeerGame(gym.Env):
 
         # TODO calculate state shape
         #self.action_space = spaces.Discrete(N_DISCRETE_ACTIONS)
+
+    def _save(self):
+        """
+        serialize environment to a pickle string
+        :rtype: string
+        """
+        canned = cloudpickle.dumps(self)
+        return canned
+
+    def _load(self, pickle_string):
+        """
+        deserialize environment from a pickle string
+        """
+        self.__dict__.update(cloudpickle.loads(pickle_string).__dict__)
 
     def _get_observations(self):
         observations = [None] * self.n_agents
@@ -310,3 +325,7 @@ if __name__ == '__main__':
         actions = actions.astype(int)
         step_state, step_rewards, done, _ = env.step(actions)
         env.render()
+
+    # you can also save and load environment via
+    # canned_env = env._save()
+    # env._load(canned_env)
