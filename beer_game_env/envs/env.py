@@ -60,6 +60,7 @@ def state_dict_to_array(state_dict: dict):
     :param state_dict:
     :rtype: np.array
     """
+    # todo in this state this function is not use, need to use it
     current_obs = transform_obs(state_dict)
     if 'prev' in state_dict:
         prev_obs = np.hstack([transform_obs(x) for x in state_dict['prev']])
@@ -329,3 +330,5 @@ if __name__ == '__main__':
     # you can also save and load environment via
     # canned_env = env._save()
     # env._load(canned_env)
+step_state[0]
+len(step_state)
