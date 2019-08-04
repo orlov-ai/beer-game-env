@@ -330,5 +330,3 @@ if __name__ == '__main__':
     # you can also save and load environment via
     # canned_env = env._save()
     # env._load(canned_env)
-step_state[0]
-len(step_state)
